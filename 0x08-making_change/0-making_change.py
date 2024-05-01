@@ -10,12 +10,17 @@ def make_change(coins, total):
     """
     if total <= 0:
         return 0
-    current = 0
-    used = 0
-    coins = sorted(coins, reverse=True)
+
+    coins.sort(reverse=True)
+    num_coins = 0
+    coins_total = total
     for coin in coins:
-        res = (total - current) // coin
-        used += res
-        if current == total:
-            return used
-    return -1
+        if coins_total <= 0:
+            break
+        if coin <= coins_total:
+            num_coins += coins_total // coin
+            coins_total %= coin
+    if coins_total == 0:
+        return num_coins
+    else:
+        return -1
