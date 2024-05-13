@@ -2,27 +2,26 @@
 """
 island parameter
 """
+
+
 def island_perimeter(grid):
     """
     island perimeter
     """
-    perimetre = 0
+    width = len(grid[0])
+    height = len(grid)
+    edges = 0
+    size = 0
     # parcourir chaque ligne de la grille
-    for ligne in range(len(grid)):
+    for ligne in range(height):
         # parcourir chaque colonne de la grille
-        for colonne in range(len(grid[ligne])):
+        for colonne in range(width):
             # si la cellule est un morceau de terre
             if grid[ligne][colonne] == 1:
                 # vérifier si la cellule est à l'intérieur de la grille
-                voisins = 0
-                if ligne > 0 and grid[ligne - 1][colonne] == 0:
-                    voisins += 1
-                if ligne < len(grid) - 1 and grid[ligne + 1][colonne] == 0:
-                    voisins += 1
-                if colonne > 0 and grid[ligne][colonne - 1] == 0:
-                    voisins += 1
-                if colonne < len(grid[ligne]) - 1:
-                    if grid[ligne][colonne + 1] == 0:
-                        voisins += 1
-                perimetre += voisins
-    return perimetre
+                size += 1
+                if (colonne > 0 and grid[ligne][colonne - 1] == 1):
+                    edges += 1
+                if (ligne > 0 and grid[ligne - 1][colonne] == 1):
+                    edges += 1
+    return size * 4 - edges * 2
