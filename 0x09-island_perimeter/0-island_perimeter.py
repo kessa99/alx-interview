@@ -1,5 +1,7 @@
-#!/usr/bin/env python3
-
+#!/usr/bin/python3
+"""
+island parameter
+"""
 def island_perimeter(grid):
     """
     island perimeter
