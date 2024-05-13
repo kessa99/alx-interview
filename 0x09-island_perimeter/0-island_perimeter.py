@@ -1,6 +1,9 @@
 #!/usr/bin/env python3
 
 def island_perimeter(grid):
+    """
+    island perimeter
+    """
     perimetre = 0
     # parcourir chaque ligne de la grille
     for ligne in range(len(grid)):
