@@ -8,20 +8,34 @@ def make_change(coins, total):
     """
     coins and total
     """
+
     if total <= 0:
         return 0
-    if not coins:
+    if coins == [] or coins is None:
         return -1
-    
+    try:
+        s = coins.index(total)
+        return 1
+    except ValueError:
+        pass
+
     coins.sort(reverse=True)
     num_coins = 0
 
-    for coin in coins:
-        if total <= 0:
-            break
-        num_coins += total // coin
-        total %= coin
-    
+    for c in coins:
+        if total % c == 0:
+            num_coins += int(total / c)
+            return num_coins
+
+        if total - c >= 0:
+            if int(total / c) > 1:
+                num_coins += int(total / c)
+                total = total % c
+            else:
+                num_coins += 1
+                total -= c
+                if total == 0:
+                    break
     if total > 0:
         return -1
     return num_coins
